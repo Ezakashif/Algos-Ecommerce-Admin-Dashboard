@@ -97,5 +97,5 @@ Route::post('/email/verification-notification', function (Request $request) {
 
 
 Route::middleware(['auth', 'role:customer'])->group(function () {
-    Route::get('/customer/dashboard', [CustomerController::class, 'index'])->name('customer.dashboard');
+    Route::get('/customer/dashboard', [App\Http\Controllers\CustomerController::class, 'index'])->name('customer.dashboard');
 });

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use App\Providers\RouteServiceProvider;
 
 class LoginController extends Controller
 {
@@ -41,7 +42,7 @@ class LoginController extends Controller
     protected function authenticated($request, $user)
 {
     if ($user->role === 'admin') {
-        return redirect()->route('admin.dashboard');
+        return redirect(RouteServiceProvider::HOME);
     }
 
     return redirect()->route('customer.dashboard');

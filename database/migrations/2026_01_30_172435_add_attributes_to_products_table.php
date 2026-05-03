@@ -14,7 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->integer('stock_quantity')->default(0);
+            $table->string('sku')->unique();
+            $table->json('attributes'); // e.g. {"size": "M", "color": "Red"}
         });
     }
 
@@ -26,7 +27,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('products', function (Blueprint $table) {
-            //
+            $table->dropColumn(['sku', 'attributes']);
         });
     }
 };

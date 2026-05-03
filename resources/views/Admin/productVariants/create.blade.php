@@ -29,6 +29,11 @@
                 <label>Price Override</label>
                 <input type="number" step="0.01" name="price_override" class="form-control">
             </div>
+
+            <div class="col-md-2">
+                <label>Stock Quantity</label>
+                <input type="number" name="stock_quantity" class="form-control">
+            </div>
         </div>
 
         <div class="mt-3">

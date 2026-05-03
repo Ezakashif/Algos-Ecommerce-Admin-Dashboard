@@ -30,6 +30,30 @@
             <label>Base Price</label>
         </div>
 
+         <div class="form-floating mb-3">
+            <input type="text" name="sku" class="form-control" placeholder="SKU" required>
+            <label>SKU</label>
+        </div>
+
+         <div class="form-floating mb-3">
+            <input type="text" name="attributes[size]" class="form-control" placeholder="Size" required>
+            <label>Size</label>
+        </div>
+
+      <div class="col-md-12 d-flex align-items-center gap-4 mb-4 
+            bg-white border border-light rounded p-3 shadow-sm">
+            <label class="mb-0 text-secondary fw-semibold">Color</label>
+            <input type="color"
+                name="attributes[color]"
+                class="form-control form-control-color"
+                value="#000000">
+        </div>
+
+         <div class="form-floating mb-3">
+            <input type="number" name="stock_quantity" class="form-control" placeholder="Stock Quantity" required>
+            <label>Stock Quantity</label>
+        </div>
+
         <div class="form-floating mb-3">
             <textarea name="description" class="form-control" placeholder="Description" style="height: 100px"></textarea>
             <label>Description</label>

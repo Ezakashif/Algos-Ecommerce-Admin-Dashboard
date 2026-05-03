@@ -17,6 +17,7 @@
                     <th>SKU</th>
                     <th>Size</th>
                     <th>Color</th>
+                    <th>Stock Qty</th>
                     <th>Price</th>
                     <th>Images</th>
                     <th>Actions</th>
@@ -29,16 +30,21 @@
                     <td>{{ $variant->sku }}</td>
                     <td>{{ $variant->attributes['size'] ?? '—' }}</td>
                     <td>
-                        <span style="background: {{ $variant->attributes['color'] }}; display:inline-block; width:20px; height:20px; border:1px solid #000;"></span>
-                        {{ $variant->attributes['color'] }}
+                        <span style="background: {{ $variant->attributes['color'] ?? '#000000' }}; display:inline-block; width:20px; height:20px; border:1px solid #000;"></span>
                     </td>
+                     <td>{{ $variant->stock_quantity }}</td>
                     <td>${{ $variant->price_override ?? 'N/A' }}</td>
                     <td>
-                        @forelse($variant->images as $img)
-                            <img src="{{ asset('storage/' . $img->path) }}" width="40" class="me-1 mb-1 rounded border">
-                        @empty
-                            <em>No image</em>
-                        @endforelse
+                       @if ($variant->images->count())
+                        @foreach ($variant->images as $image)
+                            <img src="{{ asset('storage/' . $image->path) }}"
+                                class="img-thumbnail"
+                                style="width:80px;height:80px;object-fit:cover;">
+                        @endforeach
+                    @else
+                        <span class="text-muted">No Image</span>
+                    @endif
+
                     </td>
                     <td>
                         <a href="{{ route('admin.productVariants.edit', $variant->id) }}" class="btn btn-sm btn-info">Edit</a>

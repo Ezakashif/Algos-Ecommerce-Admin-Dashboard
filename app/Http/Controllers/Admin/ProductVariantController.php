@@ -56,6 +56,7 @@ class ProductVariantController extends Controller
                 'attributes.size' => 'nullable|string',
                 'attributes.color' => 'nullable|string',
                 'price_override' => 'nullable|numeric',
+                'stock_quantity' => 'required|numeric',
                 'images.*' => 'nullable|image|max:2048',
             ]);
 
@@ -64,6 +65,7 @@ class ProductVariantController extends Controller
                 'sku' => $validated['sku'],
                 'attributes' => $validated['attributes'] ?? [],
                 'price_override' => $validated['price_override'],
+                'stock_quantity' => $validated['stock_quantity'],
             ]);
 
                // Update product to indicate it has at least one variant
@@ -120,6 +122,7 @@ class ProductVariantController extends Controller
         'attributes.size' => 'nullable|string',
         'attributes.color' => 'required|string',
         'price_override' => 'nullable|numeric',
+        'stock_quantity' => 'required|numeric',
         'images.*' => 'nullable|image|max:2048',
         'delete_images' => 'nullable|array',
         'delete_images.*' => 'integer|exists:product_images,id',
@@ -130,6 +133,7 @@ class ProductVariantController extends Controller
         'sku' => $validated['sku'],
         'attributes' => $validated['attributes'],
         'price_override' => $validated['price_override'],
+        'stock_quantity' => $validated['stock_quantity'],
     ]);
 
     // Delete selected images

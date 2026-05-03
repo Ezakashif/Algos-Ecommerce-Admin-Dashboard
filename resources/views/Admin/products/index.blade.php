@@ -12,8 +12,12 @@
                 <tr>
                     <th>Image</th>
                     <th>Name</th>
-                    <th>Base Price</th>
                     <th>Category</th>
+                    <th>Base Price</th>
+                    <th>SKU</th>
+                    <th>Stock Qty</th>
+                    <th>Color</th>
+                    <th>Size</th>
                     <th>Variants</th>
                     <th>Actions</th>
                 </tr>
@@ -22,19 +26,17 @@
             @foreach ($products as $product)
                 <tr>
                     <td style="width: 100px;">
-                        @if ($product->images->count())
-                            <img src="{{ asset('storage/' . $product->images->first()->path) }}" 
-                                 alt="Product Image" 
-                                 class="img-thumbnail" 
-                                 style="width: 80px; height: 80px; object-fit: cover;">
+                       @if ($product->primaryImage)
+                            <img src="{{ asset('storage/' . $product->primaryImage->path) }}"
+                                class="img-thumbnail"
+                                style="width:80px;height:80px;object-fit:cover;">
                         @else
                             <span class="text-muted">No Image</span>
                         @endif
+
                     </td>
 
                     <td>{{ $product->name }}</td>
-
-                    <td>${{ number_format($product->base_price, 2) }}</td>
 
                     <td>
                         @forelse ($product->categories as $category)
@@ -47,13 +49,19 @@
                         @endforelse
                     </td>
 
-                  <td>
+                    <td>${{ number_format($product->base_price, 2) }}</td>
+                    <td>{{ $product->sku }}</td>
+                    <td>{{ $product->stock_quantity }}</td>
+                    <td><span style="background: {{ $product->attributes['color'] ?? '#000000' }}; display:inline-block; width:20px; height:20px; border:1px solid #000;"></span></td>
+                    <td> {{ $product->variants->first()?->attributes['size'] ?? 'No Size' }}</td>
+
+                  <td width="150px">
   <a href="{{ route('admin.products.variants.index', $product->id) }}" class="btn btn-sm btn-warning">View Variants</a>
 
                         
 </td>
 
-                    <td>
+                    <td width="150px">
                         <a href="{{ route('admin.products.edit', $product->id) }}" class="btn btn-sm btn-primary">Edit</a>
                         <form action="{{ route('admin.products.destroy', $product->id) }}" method="POST" style="display:inline;">
                             @csrf
