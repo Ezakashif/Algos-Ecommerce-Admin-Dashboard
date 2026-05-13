@@ -1,5 +1,4 @@
-/public linguist-vendored
-/node_modules linguist-vendored
-/vendor linguist-vendored
-/resources/css linguist-vendored
-/resources/js linguist-vendored
+*.js linguist-vendored
+*.scss linguist-vendored
+public/* linguist-vendored
+node_modules/* linguist-vendored
